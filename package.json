@@ -1,0 +1,34 @@
+{
+    "name": "lets-eat",
+    "version": "1.0.0",
+    "description": "this is a practice project for react basics",
+    "scripts": {
+        "test": "jest",
+        "start": "parcel index.html",
+        "build": "parcel build index.html"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Rajat-Gorakhpuriya/React-Practice.git"
+    },
+    "keywords": [
+        "lets-eat"
+    ],
+    "author": "Rajat Gorakhpuriya",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Rajat-Gorakhpuriya/React-Practice/issues"
+    },
+    "homepage": "https://github.com/Rajat-Gorakhpuriya/React-Practice#readme",
+    "devDependencies": {
+        "parcel": "^2.11.0",
+        "process": "^0.11.10"
+    },
+    "dependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "browsersList": [
+        "last 2 Chrome Versions"
+    ]
+}
