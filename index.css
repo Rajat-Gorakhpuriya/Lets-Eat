@@ -22,7 +22,7 @@
 .res-card{
     margin: 5px;
     width: 250px;
-    height: 270px;
+    height: 300px;
 }
 
 .res-container{
@@ -39,6 +39,10 @@
 
 .search{
     padding: 10px;
+}
+
+.filter {
+    display: flex;
 }
 
 .filter-btn {
