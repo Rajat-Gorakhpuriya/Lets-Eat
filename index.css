@@ -10,6 +10,10 @@
     padding: 5px;
 }
 
+.nav-items{
+    margin-top: 20px;
+}
+
 .nav-items > ul {
     display: flex;    
     list-style-type: none;
@@ -17,6 +21,7 @@
 
 .nav-items>ul>li {
     padding: 10px;
+    cursor: pointer;
 }
 
 .res-card{
