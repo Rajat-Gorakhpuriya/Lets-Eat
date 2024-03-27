@@ -71,3 +71,7 @@
     background-color: #f0f0f0;
     margin: 20px;
 }
+.user-card {
+    padding: 10px;
+    border: 1px solid blue;
+}

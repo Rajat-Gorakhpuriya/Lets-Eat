@@ -31,7 +31,7 @@ const RestauroMenu = () => {
             <h3>Menu</h3>
             <ul>
                 {itemCards?.map((item) => (
-                    <li key={item.card.info.id}>{item.card.info.name} - {item.card.info.price}</li>))
+                    <li key={+item.card.info.id}>{item.card.info.name} - {item.card.info.price}</li>))
                 }
             </ul>
         </div>
