@@ -1,29 +1,16 @@
-import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
-import { MENU_API } from "../utils/constants";
-
-
+import useRestaurentMenu from "../utils/useRestaurantMenu";
 
 const RestauroMenu = () => {
-    const [restInfo, setRestInfo] = useState(null);
-    const [itemCards, setitemCards] = useState(null);
     const { resId } = useParams() || '74959';
-    useEffect(()=>{
-        fetchMenu();
-    },[]);
-
-    const fetchMenu = async() => {
-        const data = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(MENU_API + resId)}`);
-        let json = await (data.json());
-        json = JSON.parse(json.contents);
-        setRestInfo(json.data);
-        setitemCards(json.data.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards)
-        // console.log(json.data);       
-    }
+    const response = useRestaurentMenu(resId);
+    const restInfo = response.restInfo;
+    const itemCards = response.itemCards;
+   
     if (restInfo === null) return <Shimmer />;
-    const { name, cuisines, costForTwoMessage } = restInfo?.cards[0]?.card?.card?.info;
-    console.log(itemCards);
+
+    const { name, cuisines, costForTwoMessage } = restInfo?.cards[2]?.card?.card?.info;
     return (
         <div className="menu">
             <h1>{name}</h1>

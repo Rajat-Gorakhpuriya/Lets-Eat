@@ -2,6 +2,7 @@ import RestroratCard from "./RestroratCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
     const [newRestList, setnewRestList] = useState([]);
@@ -16,8 +17,16 @@ const Body = () => {
         const data = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.7195687&lng=75.8577258&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING')}`);
         let json =  await(data.json());
         json = JSON.parse(json.contents);
-        setnewRestList(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilterRestaurent(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setnewRestList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilterRestaurent(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    }
+
+    const onlineStatus = useOnlineStatus();
+
+    if(onlineStatus === false) {
+        return (
+            <h1> Your Are Offline</h1>
+        );
     }
     
     if (newRestList?.length === 0) {
