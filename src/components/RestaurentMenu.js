@@ -1,26 +1,32 @@
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurentMenu from "../utils/useRestaurantMenu";
+import RestorantCategory from "./RestorantCatagory";
+import { useState } from "react";
 
 const RestauroMenu = () => {
     const { resId } = useParams() || '74959';
     const response = useRestaurentMenu(resId);
     const restInfo = response.restInfo;
-    const itemCards = response.itemCards;
-   
+    const categories = response.categories;
+    const [showIndex, setShowIndex] = useState();
+
     if (restInfo === null) return <Shimmer />;
 
     const { name, cuisines, costForTwoMessage } = restInfo?.cards[2]?.card?.card?.info;
     return (
-        <div className="menu">
-            <h1>{name}</h1>
-            <p>{cuisines.join(", ")} - {costForTwoMessage}</p> <h3>{costForTwoMessage}</h3>
-            <h3>Menu</h3>
-            <ul>
-                {itemCards?.map((item) => (
-                    <li key={+item.card.info.id}>{item.card.info.name} - {item.card.info.price}</li>))
-                }
-            </ul>
+        <div className="text-center">
+            <h1 className="font-bold my-10 text-2xl">{name}</h1>
+            <p className="font-bold text-lg">{cuisines.join(", ")} - {costForTwoMessage}</p>
+            {categories.map((category, index) => 
+                (<RestorantCategory 
+                    key={category?.card?.card?.title} 
+                    data={category?.card?.card} 
+                    showItems = {index === showIndex} 
+                    setShowIndex = {() => setShowIndex(index)}
+                    >
+                </RestorantCategory>)
+            )}
         </div>
     );
     

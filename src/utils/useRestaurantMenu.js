@@ -5,6 +5,7 @@ import { MENU_API } from "../utils/constants";
 const useRestaurentMenu = (resId) => {
     const [restInfo,setRestInfo] = useState(null);
     const [itemCards, setItemCards] = useState(null);
+    const [categories, setCategories] = useState(null);
 
     useEffect(() => {
         fetchData();
@@ -15,11 +16,14 @@ const useRestaurentMenu = (resId) => {
         let json = await (data.json());
         json = JSON.parse(json.contents); 
         setRestInfo(json.data);
-        setItemCards(json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards);   
+        setItemCards(json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards);
+        setCategories(json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(c => c.card.card["@type"] === 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory'));
+   
     }
     return {
         "restInfo": restInfo,
-        "itemCards": itemCards
+        "itemCards": itemCards,
+        "categories": categories
     }
 }
 
