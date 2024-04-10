@@ -42,7 +42,7 @@ const Body = () => {
             {/* <div className="search">Search</div> */}
             <div className="filter">
                 <div className="search m-4 p-4 flex items-center">
-                    <input type="text" className="border border-solid border-black" value={searchText} onChange={(e)=>{
+                    <input type="text" data-testid = "searchInput" className="border border-solid border-black" value={searchText} onChange={(e)=>{
                         setSearchText(e.target.value);
                     }}></input>
                     <button className="px-4 py-2 bg-green-200 m-4 rounded-lg"
@@ -58,8 +58,8 @@ const Body = () => {
                             setFilterRestaurent(newList);
                         }}
                     >Top Rated Restaurants</button>
-                    <div className="m-4 p-4 flex">
-                        <labe>User Name : </labe>
+                    <div className="m-4 p-4">
+                        <label>User Name : </label>
                         <input
                             type="text" 
                             className="border-black p-2" 
